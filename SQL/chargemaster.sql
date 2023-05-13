@@ -11,7 +11,7 @@
  Target Server Version : 50736 (5.7.36-log)
  File Encoding         : 65001
 
- Date: 10/05/2023 15:53:08
+ Date: 12/05/2023 21:37:45
 */
 
 SET NAMES utf8mb4;
@@ -27,11 +27,6 @@ CREATE TABLE `admin_info`  (
   `admin_password` varchar(255) CHARACTER SET utf8 COLLATE utf8_general_ci NOT NULL,
   PRIMARY KEY (`admin_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 7 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of admin_info
--- ----------------------------
-INSERT INTO `admin_info` VALUES (6, 'admin', 'c7e0855007d9d1fcd80c1fbcb3d485b9');
 
 -- ----------------------------
 -- Table structure for charging_detail
@@ -53,10 +48,6 @@ CREATE TABLE `charging_detail`  (
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
 
 -- ----------------------------
--- Records of charging_detail
--- ----------------------------
-
--- ----------------------------
 -- Table structure for charging_record
 -- ----------------------------
 DROP TABLE IF EXISTS `charging_record`;
@@ -64,17 +55,13 @@ CREATE TABLE `charging_record`  (
   `record_id` int(11) NOT NULL,
   `request_id` int(11) NULL DEFAULT NULL,
   `charging_station_id` int(11) NULL DEFAULT NULL,
-  `start_time` datetime NULL DEFAULT NULL,
-  `end_time` datetime NULL DEFAULT NULL,
+  `start_time` timestamp NULL DEFAULT NULL,
+  `end_time` timestamp NULL DEFAULT NULL,
   `actual_power` int(11) NULL DEFAULT NULL,
   `service_fee` decimal(5, 2) NULL DEFAULT NULL,
   `charging_fee` decimal(5, 2) NULL DEFAULT NULL,
   `total_fee` decimal(5, 2) NULL DEFAULT NULL
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of charging_record
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for charging_request
@@ -85,13 +72,10 @@ CREATE TABLE `charging_request`  (
   `user_id` varchar(50) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `charging_type` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   `request_power` decimal(10, 5) NULL DEFAULT NULL,
-  `valid` tinyint(1) NULL DEFAULT NULL,
+  `invalid` tinyint(1) NULL DEFAULT NULL,
+  `created_at` timestamp NULL DEFAULT NULL,
   PRIMARY KEY (`request_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of charging_request
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for charging_station_info
@@ -102,10 +86,6 @@ CREATE TABLE `charging_station_info`  (
   `charging_type` varchar(10) CHARACTER SET utf8 COLLATE utf8_general_ci NULL DEFAULT NULL,
   PRIMARY KEY (`charging_station_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of charging_station_info
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for charging_station_status
@@ -119,10 +99,6 @@ CREATE TABLE `charging_station_status`  (
   `total_charging_power` int(11) NULL DEFAULT NULL,
   PRIMARY KEY (`charging_station_id`) USING BTREE
 ) ENGINE = InnoDB AUTO_INCREMENT = 1 CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of charging_station_status
--- ----------------------------
 
 -- ----------------------------
 -- Table structure for user_info
@@ -139,10 +115,5 @@ CREATE TABLE `user_info`  (
   `updated_at` datetime NULL DEFAULT NULL,
   PRIMARY KEY (`user_id`) USING BTREE
 ) ENGINE = InnoDB CHARACTER SET = utf8 COLLATE = utf8_general_ci ROW_FORMAT = Dynamic;
-
--- ----------------------------
--- Records of user_info
--- ----------------------------
-INSERT INTO `user_info` VALUES ('a2528e34bd0448a39faa3df7e4d3daf5', 'wyc2002', 'd730b6c01ffde701f4315bea2a9ae3c0', 'wengyuechuan@163.com', '京HGP888', 0, '2023-05-10 06:58:18', '2023-05-10 06:58:18');
 
 SET FOREIGN_KEY_CHECKS = 1;
